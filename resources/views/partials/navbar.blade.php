@@ -14,7 +14,7 @@
                     <a class="nav-link" href="{{ route('over-ons') }}">Over Ons</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('webshop') }}">Webshop</a>
+                    <a class="nav-link" href="{{ route('products.index') }}">Webshop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('zakelijk') }}">Zakelijk</a>

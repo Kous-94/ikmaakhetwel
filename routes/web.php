@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,10 +12,6 @@ Route::get('/', function () {
 Route::get('/over-ons', function () {
     return view('over-ons');
 })->name('over-ons');
-
-Route::get('/webshop', function () {
-    return view('webshop');
-})->name('webshop');
 
 Route::get('/zakelijk', function () {
     return view('zakelijk');
@@ -38,3 +35,7 @@ Route::get('/contact', function () {
 
 Route::post('/contact', [ContactController::class,'sendContactEmail'])->name('contact.send');
 
+Route::get('/webshop', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
