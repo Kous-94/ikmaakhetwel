@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('maintenance_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('requester_name');
+            $table->string('contact_email');
+            $table->string('contact_phone');
+            $table->text('issue_description');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
