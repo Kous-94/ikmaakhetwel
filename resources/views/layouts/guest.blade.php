@@ -34,17 +34,37 @@
 
             <!-- Navbar Links -->
             <div id="navbar-links" class="hidden lg:flex lg:items-center lg:space-x-4">
-                <a href="{{ route('over-ons') }}" class="hover:text-indigo-400">Over Ons</a>
-                <a href="{{ route('products.index') }}" class="hover:text-indigo-400">Webshop</a>
-                <a href="{{ route('zakelijk') }}" class="hover:text-indigo-400">Zakelijk</a>
-                <a href="{{ route('service') }}" class="hover:text-indigo-400">Service</a>
-                <a href="{{ route('it-nieuws') }}" class="hover:text-indigo-400">IT Nieuws</a>
-                <a href="{{ route('reparaties') }}" class="hover:text-indigo-400">Reparaties</a>
-                <a href="{{ route('contact') }}" class="hover:text-indigo-400">Contact</a>
+                <a href="{{ route('over-ons') }}" class="hover:text-indigo-400 
+        @if(request()->routeIs('over-ons')) text-indigo-500 font-semibold @endif">
+                    Over Ons
+                </a>
+                <a href="{{ route('products.index') }}" class="hover:text-indigo-400 
+        @if(request()->routeIs('products.index')) text-indigo-500 font-semibold @endif">
+                    Webshop
+                </a>
+                <a href="{{ route('service') }}" class="hover:text-indigo-400 
+        @if(request()->routeIs('service')) text-indigo-500 font-semibold @endif">
+                    Service
+                </a>
+                <a href="{{ route('it-nieuws') }}" class="hover:text-indigo-400 
+        @if(request()->routeIs('it-nieuws')) text-indigo-500 font-semibold @endif">
+                    IT Nieuws
+                </a>
+                <a href="{{ route('reparaties') }}" class="hover:text-indigo-400 
+        @if(request()->routeIs('reparaties')) text-indigo-500 font-semibold @endif">
+                    Reparaties
+                </a>
+                <a href="{{ route('contact') }}" class="hover:text-indigo-400 
+        @if(request()->routeIs('contact')) text-indigo-500 font-semibold @endif">
+                    Contact
+                </a>
 
                 <!-- Authentication Links -->
                 @guest
-                <a href="{{ route('login') }}" class="hover:text-indigo-400">Login</a>
+                <a href="{{ route('login') }}" class="hover:text-indigo-400 
+        @if(request()->routeIs('login')) text-indigo-500 font-semibold @endif">
+                    Login
+                </a>
                 @else
                 <a href="{{ route('logout') }}" class="hover:text-red-400"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -55,6 +75,7 @@
                 </form>
                 @endguest
             </div>
+
         </div>
     </nav>
 

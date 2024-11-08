@@ -1,51 +1,54 @@
-@extends('layouts.guest')
+<x-guest-layout>
+    <div class="container mx-auto px-4 py-6">
 
-@section('content')
-
-<div class="container">
-    <div class="row">
-        <div class="col-12 my-3">
-        <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
-
+        <!-- Add Product Button: Visible only to logged-in users -->
+        @auth
+        <div class="mb-6">
+            <a href="{{ route('products.create') }}" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition duration-300">
+                Add Product
+            </a>
         </div>
-                <!-- Loop through each product and display its details -->
-        @foreach ($products as $product)
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <!-- Product Image -->
-                <img src="{{ asset('storage/' . $product->image_path) }}" class="card-img-top" alt="{{ $product->name }}">
-                <div class="card-body">
-                <!-- Product Name,Description,Price and button-->
-                    <h5 class="card-title">{{ $product->name }}</h5>
-                    <p class="card-text">{{ $product->description }}</p>
-                    <p class="card-text">Price: ${{ $product->price }}</p>
-                    <p class="card-text">Quantity: {{ $product->quantity }}</p>
-                    <a href="{{ route('products.show', ['id' => $product->id]) }}" class="btn btn-primary">View Product</a>
-                </div>
+        @endauth
+
+        <!-- Check if there are no products and show a message -->
+        @if ($products->isEmpty())
+            <div class="bg-yellow-100 text-yellow-800 p-4 rounded-lg shadow-md">
+                <p class="text-lg font-semibold">No products available at the moment.</p>
+                <p>Please check back later or <a href="{{ route('products.create') }}" class="text-blue-600 hover:underline">add a product</a> if you're logged in.</p>
             </div>
-        </div>
-        @endforeach
+        @else
+            <!-- Grid Layout for Products -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+                <!-- Loop through each product and display its details -->
+                @foreach ($products as $product)
+                <div class="bg-white border rounded-lg shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                    <!-- Product Image -->
+                    <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-t-lg">
+
+                    <div class="p-6">
+                        <!-- Product Name -->
+                        <h5 class="text-xl font-semibold text-gray-800 hover:text-blue-600 transition duration-300">{{ $product->name }}</h5>
+
+                        <!-- Product Description -->
+                        <p class="text-gray-600 mt-2 line-clamp-3">{{ $product->description }}</p>
+
+                        <!-- Product Price and Quantity -->
+                        <p class="text-gray-800 mt-4 font-semibold">Price: ${{ $product->price }}</p>
+                        <p class="text-gray-500">Quantity: {{ $product->quantity }}</p>
+
+                        <!-- View Product Button -->
+                        <div class="mt-6">
+                            <a href="{{ route('products.show', ['id' => $product->id]) }}" class="bg-blue-600 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition duration-300">
+                                View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+        @endif
+
     </div>
-</div>
-
-<!-- Custom CSS for styling the cards and buttons -->
-<style>
-    .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-</style>
-
-@endsection
-
-
+</x-guest-layout>
