@@ -1,5 +1,5 @@
 <!-- resources/views/contact.blade.php -->
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('content')
 

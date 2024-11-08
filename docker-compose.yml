@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Application container
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ikmaakhetwel
+    container_name: ikmaakhetwel
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=base64:<your-app-key>  # Replace with the output of `php artisan key:generate`
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=ikmaakhetwel_db
+      - DB_USERNAME=laravel
+      - DB_PASSWORD=password
+    depends_on:
+      - db
+    networks:
+      - laravel-network
+
+  # MySQL database container
+  db:
+    image: mysql:8.0
+    container_name: laravel-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: ikmaakhetwel_db
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - laravel-network
+
+# Volumes for persistent data storage
+volumes:
+  db_data:
+
+networks:
+  laravel-network:
+    driver: bridge
+    
