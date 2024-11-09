@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AppointmentController;
 
 
 require __DIR__.'/auth.php';
@@ -51,4 +52,6 @@ Route::get('/webshop', [ProductController::class, 'index'])->name('products.inde
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
+
+Route::post('/afspraak', [AppointmentController::class, 'store'])->name('appointments.store');
 

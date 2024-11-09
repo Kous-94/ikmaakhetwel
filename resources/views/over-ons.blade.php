@@ -29,4 +29,5 @@
             </div>
         </div>
     </div>
+    <x-appointment-booking :successMessage="session('success')" />
 </x-guest-layout>
