@@ -4,7 +4,9 @@
     <div class="flex flex-col md:flex-row gap-8">
         <!-- Product Image -->
         <div class="md:w-1/2">
-            <img src="{{ asset('storage/' . $product->image_path) }}" class="w-full h-auto object-cover rounded-lg" alt="{{ $product->name }}">
+          <!-- <img src="{{ asset(path: 'storage/' . $product->image_path) }}" class="w-full h-auto object-cover rounded-lg" alt="{{ $product->name }}"> -->
+          <img src="https://th.bing.com/th/id/OIP.kmWWz-AdMxlWzGdoBf_llgHaFI?w=254&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" class="w-full h-auto object-cover rounded-lg" alt="{{ $product->name }}">
+
         </div>
 
         <!-- Product Details -->
@@ -21,5 +23,5 @@
         </div>
     </div>
 </div>
-
+<x-appointment-booking :successMessage="session(key: 'success')" />
 </x-guest-layout>

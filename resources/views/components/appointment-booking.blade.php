@@ -32,7 +32,7 @@
     <div id="calendar" class="mt-8"></div>
 </div>
 
-<script src="{{ mix('js/app.js') }}"></script>
+
 <script>
     // Initialize FullCalendar for the frontend
     document.addEventListener('DOMContentLoaded', function() {

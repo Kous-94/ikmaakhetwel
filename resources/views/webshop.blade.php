@@ -24,7 +24,8 @@
                 @foreach ($products as $product)
                 <div class="bg-white border rounded-lg shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
                     <!-- Product Image -->
-                    <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-t-lg">
+                    <!-- <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-t-lg"> -->
+                    <img src="https://th.bing.com/th/id/OIP.JK-TAyqjDmXfxGvtDijnnAHaGS?w=201&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-t-lg">
 
                     <div class="p-6">
                         <!-- Product Name -->
