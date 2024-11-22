@@ -2,13 +2,13 @@
     <div class="container mx-auto px-4 py-6">
 
         <!-- Add Product Button: Visible only to logged-in users -->
-        @auth
+        <!-- @auth
         <div class="mb-6">
             <a href="{{ route('products.create') }}" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition duration-300">
                 Add Product
             </a>
         </div>
-        @endauth
+        @endauth -->
 
         <!-- Check if there are no products and show a message -->
         @if ($products->isEmpty())
@@ -40,7 +40,7 @@
 
                         <!-- View Product Button -->
                         <div class="mt-6">
-                            <a href="{{ route('products.show', ['id' => $product->id]) }}" class="bg-blue-600 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition duration-300">
+                            <a href="{{ route('webshop.show', ['id' => $product->id]) }}" class="bg-blue-600 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition duration-300">
                                 View Product
                             </a>
                         </div>

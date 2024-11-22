@@ -8,6 +8,25 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        $contacts = Contact::all(); // Get all contacts
+        return view('contacts.index', compact('contacts'));
+    }
+
+    public function show($id)
+    {
+        $contact = Contact::findOrFail($id); // Find a contact by ID
+        return view('contacts.show', compact('contact'));
+    }
+
+    public function destroy($id)
+    {
+        $contact = Contact::findOrFail($id); // Find contact by ID
+        $contact->delete(); // Delete the contact
+        return redirect()->route('contacts.index')->with('success', 'Contact deleted successfully');
+    }
+    
     public function sendContactEmail(Request $request)
     {
         $request->validate([

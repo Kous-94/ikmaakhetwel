@@ -13,7 +13,29 @@ use App\Mail\AppointmentReminder;
 class AppointmentController extends Controller
 {
    
-    // Store the appointment
+    public function index()
+    {
+        $appointments = Appointment::all();
+
+        // Return the view with appointments
+        return view('appointments.index', compact('appointments'));
+    }
+
+    public function show($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+
+        return view('appointments.show', compact('appointment'));
+    }
+
+    public function destroy($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $appointment->delete();
+
+        return redirect()->route('appointments.index')->with('success', 'Appointment deleted successfully!');
+    }
+    
     public function store(Request $request)
     {
         $request->validate([
