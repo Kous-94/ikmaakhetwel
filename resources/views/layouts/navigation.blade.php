@@ -16,9 +16,9 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <!-- New Appointment Tab -->
-                    <!-- <x-nav-link :href="route('appointments')" :active="request()->routeIs('appointments')">
+                    <x-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments.index')">
                         {{ __('Appointments') }}
-                    </x-nav-link> -->
+                    </x-nav-link>
                     <!-- New Products Tab -->
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Products') }}
@@ -47,9 +47,9 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <!-- New Appointment Tab -->
-            <!-- <x-responsive-nav-link :href="route('appointments')" :active="request()->routeIs('appointments')">
+            <x-responsive-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments.index')">
                 {{ __('Appointments') }}
-            </x-responsive-nav-link> -->
+            </x-responsive-nav-link>
             <!-- New Products Tab -->
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                 {{ __('Products') }}

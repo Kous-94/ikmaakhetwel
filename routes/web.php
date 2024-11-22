@@ -36,13 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy'); // Delete product
     
     // Appointment Management Routes
-    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments'); // List all appointments
-    Route::get('/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create'); // Appointment form
-    Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store'); // Store new appointment
-    Route::get('/appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show'); // View an appointment
-    Route::get('/appointments/{id}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit'); // Edit form
-    Route::patch('/appointments/{id}', [AppointmentController::class, 'update'])->name('appointments.update'); // Update appointment
-    Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy'); // Delete appointment
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index'); // List all appointments
+    Route::get('/appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show'); // View single appointment
+    Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy'); // Delete appointment    Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store'); // Store new appointment
 });
 
 // Other public routes

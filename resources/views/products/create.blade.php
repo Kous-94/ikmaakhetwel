@@ -15,28 +15,35 @@
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="name">
                                 Product Name
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight" id="name" name="name" type="text" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight" id="name" name="name" type="text" required>
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="type">
                                 Type
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight" id="type" name="type" type="text" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight" id="type" name="type" type="text" required>
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="price">
                                 Price
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight" id="price" name="price" type="number" step="0.01" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight" id="price" name="price" type="number" step="0.01" required>
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="quantity">
                                 Quantity
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight" id="quantity" name="quantity" type="number" required>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black  leading-tight" id="quantity" name="quantity" type="number" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="description">
+                                Description
+                            </label>
+                            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight" id="description" name="description" rows="4" required></textarea>
                         </div>
 
                         <div class="flex items-center justify-between">

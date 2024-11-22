@@ -8,7 +8,6 @@ use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
-    // Display a list of all products
     public function index()
     {
         $products = Product::all();
@@ -26,49 +25,43 @@ class ProductController extends Controller
         return view('webshop.show', compact('product'));
     }
 
-    // Show the form for creating a new product
     public function create()
     {
         return view('products.create');
     }
 
-    // Store a newly created product in the database
     public function store(ProductRequest $request)
     {
-        Product::create($request->validated()); // Create a new product with validated data
+        Product::create($request->validated()); 
 
-        return redirect()->route('products')->with('success', 'Product created successfully!');
+        return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
-    // Display the specified product
     public function show($id)
     {
         $product = Product::findOrFail($id);
         return view('products.show', compact('product'));
     }
 
-    // Show the form for editing the specified product
     public function edit($id)
     {
         $product = Product::findOrFail($id);
         return view('products.edit', compact('product'));
     }
 
-    // Update the specified product in the database
     public function update(ProductRequest $request, $id)
     {
         $product = Product::findOrFail($id);
-        $product->update($request->validated()); // Update product data with validated data
+        $product->update($request->validated()); 
 
-        return redirect()->route('products')->with('success', 'Product updated successfully!');
+        return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
 
-    // Remove the specified product from the database
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('products')->with('success', 'Product deleted successfully!');
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
     }
 }
