@@ -1,25 +1,46 @@
-<x-guest-layout>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Product Details') }}
+        </h2>
+    </x-slot>
 
-<div class="container mx-auto px-4 py-8">
-    <div class="flex flex-col md:flex-row gap-8">
-        <!-- Product Image -->
-        <div class="md:w-1/2">
-            <img src="{{ asset('storage/' . $product->image_path) }}" class="w-full h-auto object-cover rounded-lg" alt="{{ $product->name }}">
-        </div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold">{{ $product->name }}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">{{ $product->description }}</p>
+                    </div>
 
-        <!-- Product Details -->
-        <div class="md:w-1/2">
-            <h2 class="text-3xl font-semibold text-gray-800">{{ $product->name }}</h2>
-            <p class="text-lg text-gray-600 mt-2">{{ $product->description }}</p>
-            <p class="text-lg font-semibold text-gray-800 mt-4"><strong>Price:</strong> ${{ $product->price }}</p>
-            <p class="text-lg font-semibold text-gray-800 mt-2"><strong>Quantity:</strong> {{ $product->quantity }}</p>
-            <div class="mt-6">
-                <a href="{{ route('products.index') }}" class="bg-gray-800 text-white py-2 px-6 rounded-lg hover:bg-gray-700 transition duration-300">
-                    Back to Products
-                </a>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <strong class="block text-gray-700 dark:text-gray-300">Type:</strong>
+                            <span class="text-gray-900 dark:text-gray-100">{{ $product->type }}</span>
+                        </div>
+
+                        <div>
+                            <strong class="block text-gray-700 dark:text-gray-300">Price:</strong>
+                            <span class="text-gray-900 dark:text-gray-100">${{ number_format($product->price, 2) }}</span>
+                        </div>
+
+                        <div>
+                            <strong class="block text-gray-700 dark:text-gray-300">Quantity:</strong>
+                            <span class="text-gray-900 dark:text-gray-100">{{ $product->quantity }}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <a href="{{ route('products.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                            Back to Products
+                        </a>
+                        <a href="{{ route('products.edit', $product->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Edit Product
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-</x-guest-layout>
+</x-app-layout>

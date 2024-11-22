@@ -33,7 +33,7 @@ class AppointmentController extends Controller
         $this->sendReminderEmail($appointment);
 
         // Add to Google Calendar (optional - this needs setup)
-        $this->addToGoogleCalendar($appointment);
+        // $this->addToGoogleCalendar($appointment);
 
         return redirect()->back()->with('success', 'Your appointment has been scheduled.');
     }

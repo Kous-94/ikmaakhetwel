@@ -38,8 +38,8 @@
         @if(request()->routeIs('over-ons')) text-indigo-500 font-semibold @endif">
                     Over Ons
                 </a>
-                <a href="{{ route('products.index') }}" class="hover:text-indigo-400 
-        @if(request()->routeIs('products.index')) text-indigo-500 font-semibold @endif">
+                <a href="{{ route('products.webshop') }}" class="hover:text-indigo-400 
+        @if(request()->routeIs('products.webshop')) text-indigo-500 font-semibold @endif">
                     Webshop
                 </a>
                 <a href="{{ route('service') }}" class="hover:text-indigo-400 

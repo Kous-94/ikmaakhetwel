@@ -6,9 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AppointmentController;
 
-
 require __DIR__.'/auth.php';
-
 
 Route::get('/', function () {
     return view('home');
@@ -19,13 +17,35 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    // Profile Routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/webshop', [ProductController::class, 'webshop'])->name('products.webshop'); 
+    Route::get('/webshop/products/{id}', [ProductController::class, 'webshopShow'])->name('webshop.show');
+
+
+    // Product Management Routes
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index'); // List all products
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); // Create form
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store'); // Store new product
+    Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show'); // View a single product
+    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit'); // Edit form
+    Route::patch('/products/{id}', [ProductController::class, 'update'])->name('products.update'); // Update product
+    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy'); // Delete product
+    
+    // Appointment Management Routes
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments'); // List all appointments
+    Route::get('/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create'); // Appointment form
+    Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store'); // Store new appointment
+    Route::get('/appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show'); // View an appointment
+    Route::get('/appointments/{id}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit'); // Edit form
+    Route::patch('/appointments/{id}', [AppointmentController::class, 'update'])->name('appointments.update'); // Update appointment
+    Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy'); // Delete appointment
 });
 
-
+// Other public routes
 Route::get('/over-ons', function () {
     return view('over-ons');
 })->name('over-ons');
@@ -45,13 +65,8 @@ Route::get('/reparaties', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+Route::post('/contact', [ContactController::class, 'sendContactEmail'])->name('contact.send');
 
-Route::post('/contact', [ContactController::class,'sendContactEmail'])->name('contact.send');
-
-Route::get('/webshop', [ProductController::class, 'index'])->name('products.index');
-Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-
-
+// Routes for appointment booking page (public)
+Route::get('/afspraak', [AppointmentController::class, 'showForm'])->name('afspraak.show');
 Route::post('/afspraak', [AppointmentController::class, 'store'])->name('appointments.store');
-
