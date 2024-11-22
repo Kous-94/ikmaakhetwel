@@ -6,7 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AppointmentController;
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('home');
@@ -17,29 +17,42 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
     // Profile Routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
-    Route::get('/webshop', [ProductController::class, 'webshop'])->name('products.webshop'); 
-    Route::get('/webshop/products/{id}', [ProductController::class, 'webshopShow'])->name('webshop.show');
-
 
     // Product Management Routes
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index'); // List all products
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); // Create form
-    Route::post('/products', [ProductController::class, 'store'])->name('products.store'); // Store new product
-    Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show'); // View a single product
-    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit'); // Edit form
-    Route::patch('/products/{id}', [ProductController::class, 'update'])->name('products.update'); // Update product
-    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy'); // Delete product
-    
+    Route::prefix('products')->name('products.')->group(function () {
+        Route::get('/', [ProductController::class, 'index'])->name('index'); // List all products
+        Route::get('/create', [ProductController::class, 'create'])->name('create'); // Create form
+        Route::post('/', [ProductController::class, 'store'])->name('store'); // Store new product
+        Route::get('{id}', [ProductController::class, 'show'])->name('show'); // View a single product
+        Route::get('{id}/edit', [ProductController::class, 'edit'])->name('edit'); // Edit form
+        Route::patch('{id}', [ProductController::class, 'update'])->name('update'); // Update product
+        Route::delete('{id}', [ProductController::class, 'destroy'])->name('destroy'); // Delete product
+    });
+
     // Appointment Management Routes
-    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index'); // List all appointments
-    Route::get('/appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show'); // View single appointment
-    Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy'); // Delete appointment    Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store'); // Store new appointment
+    Route::prefix('appointments')->name('appointments.')->group(function () {
+        Route::get('/', [AppointmentController::class, 'index'])->name('index'); // List all appointments
+        Route::get('{id}', [AppointmentController::class, 'show'])->name('show'); // View single appointment
+        Route::delete('{id}', [AppointmentController::class, 'destroy'])->name('destroy'); // Delete appointment
+        Route::post('/', [AppointmentController::class, 'store'])->name('store'); // Store new appointment
+    });
+
+    // Contact Management Routes
+    Route::prefix('contacts')->name('contacts.')->group(function () {
+        Route::get('/', [ContactController::class, 'index'])->name('index'); // List all contacts
+        Route::get('{id}', [ContactController::class, 'show'])->name('show'); // View a single contact
+        Route::delete('{id}', [ContactController::class, 'destroy'])->name('destroy'); // Delete a contact
+    });
 });
+
+Route::get('/webshop', [ProductController::class, 'webshop'])->name('products.webshop');
+Route::get('/webshop/products/{id}', [ProductController::class, 'webshopShow'])->name('webshop.show');
+
 
 // Other public routes
 Route::get('/over-ons', function () {
